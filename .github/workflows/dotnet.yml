@@ -40,6 +40,6 @@ jobs:
         SLACK_COLOR: ${{ job.status }}
         SLACK_ICON: https://www.devision.com/wp-content/uploads/2017/10/devopsimage.png
         SLACK_TITLE: Teste com .NET
-        SLACK-MESSAGE: 'GitHub build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}'
+        SLACK_MESSAGE: 'GitHub build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}'
         SLACK_USERNAME: POCTesteIntegrado
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
