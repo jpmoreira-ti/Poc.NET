@@ -34,8 +34,7 @@ namespace WebAPI5.TesteIntegrado
 
             var response = await _testContext.Client.PostAsJsonAsync("/Client", client);
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            var data = response.Content.ReadAsStringAsync();
-            data.Result.Should().Be("Cliente cadastrado com sucesso!");
+            var json = response.Content.ReadAsStringAsync();
         }
 
         [Fact]

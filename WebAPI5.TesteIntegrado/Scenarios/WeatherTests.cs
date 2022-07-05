@@ -30,17 +30,7 @@ namespace WebAPI5.TesteIntegrado
 
             jsonResponse = await response.Content.ReadAsStringAsync();
 
-            var data = JArray.Parse(jsonResponse);
-
-            // USAR ESTE CASO, RETORNE UM OBJETO
-            //JObject data = JObject.Parse(json);
-
-            jsonFile = ChargeSchema.ReadSchema("WeatherSchema");
-            var jsonSchema = JSchema.Parse(jsonFile);
-
-            bool valid = data.IsValid(jsonSchema);
-          
-            valid.Should().BeTrue();
+            ChargeSchema.IsValidSchemaArray("WeatherSchema", jsonResponse).Should().BeTrue();
         }
     }
 }
