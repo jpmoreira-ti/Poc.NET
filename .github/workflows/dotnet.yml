@@ -54,7 +54,7 @@ jobs:
      - name: Set variables
        if: ${{failure()}}
        run: |
-        export VER=$(cat ${{github.workspace}}/${{env.file_name}})
+        cat ${{github.workspace}}/${{env.file_name}} >> $VER
         echo "VER=$VER" >> $GITHUB_ENV
          
      # notify by slack    
