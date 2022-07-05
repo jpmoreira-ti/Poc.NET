@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "PwOQzT/XtRh6PSHtiWJoARqtB6Koa7FGlSt8UySJns0wI/c8xI8Xgh39+H5yN0NuY3mZBNCZ4hyGUI2mbm22UQ==",
+  "dgSpecHash": "PmS+oZSR9sIwHNwvlwydHnx7omQM3fDRTavNGutQTnp69GXaOgpHNrKOxivk2IA93yLVItJsEWZnnWC4P5k2Qg==",
   "success": true,
   "projectFilePath": "/Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/WebAPI5.TesteIntegrado.csproj",
   "expectedPackageFiles": [
     "/Users/joaomoreira/.nuget/packages/coverlet.collector/3.0.2/coverlet.collector.3.0.2.nupkg.sha512",
+    "/Users/joaomoreira/.nuget/packages/dotliquid/2.0.333/dotliquid.2.0.333.nupkg.sha512",
     "/Users/joaomoreira/.nuget/packages/fluentassertions/6.7.0/fluentassertions.6.7.0.nupkg.sha512",
+    "/Users/joaomoreira/.nuget/packages/liquidtestreports.core/1.0.9/liquidtestreports.core.1.0.9.nupkg.sha512",
+    "/Users/joaomoreira/.nuget/packages/liquidtestreports.markdown/1.0.9/liquidtestreports.markdown.1.0.9.nupkg.sha512",
     "/Users/joaomoreira/.nuget/packages/microsoft.aspnetcore.mvc.testing/5.0.17/microsoft.aspnetcore.mvc.testing.5.0.17.nupkg.sha512",
     "/Users/joaomoreira/.nuget/packages/microsoft.aspnetcore.testhost/5.0.17/microsoft.aspnetcore.testhost.5.0.17.nupkg.sha512",
     "/Users/joaomoreira/.nuget/packages/microsoft.codecoverage/16.9.4/microsoft.codecoverage.16.9.4.nupkg.sha512",
@@ -126,6 +129,7 @@
     "/Users/joaomoreira/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512",
     "/Users/joaomoreira/.nuget/packages/system.threading.tasks.extensions/4.3.0/system.threading.tasks.extensions.4.3.0.nupkg.sha512",
     "/Users/joaomoreira/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
+    "/Users/joaomoreira/.nuget/packages/system.valuetuple/4.5.0/system.valuetuple.4.5.0.nupkg.sha512",
     "/Users/joaomoreira/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/joaomoreira/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
     "/Users/joaomoreira/.nuget/packages/xunit/2.4.1/xunit.2.4.1.nupkg.sha512",
