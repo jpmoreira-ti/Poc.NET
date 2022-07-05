@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/jpmoreira@v1
+    - uses: actions/jpmoreira-ti@v1
     - name: Setup .NET
-      uses: actions/jpmoreira@v1
+      uses: actions/jpmoreira-ti@v1
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
@@ -23,7 +23,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Upload a Build Artifact
-      uses: actions/setup-dotnet@v2
+      uses: actions/jpmoreira-ti@v1
       if: ${{always()}}
       with:
         name: 'build'
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Notification Slack
-      uses: actions/jpmoreira@v1
+      uses: actions/jpmoreira-ti@v1
       env:
         SLACK_CHANNEL: pocdotnet
         SLACK_TITLE: Teste
