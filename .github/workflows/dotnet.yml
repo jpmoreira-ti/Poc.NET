@@ -28,8 +28,11 @@ jobs:
        run: dotnet build --no-restore
          
      # notify by slack    
-     - name: Send GitHub Action trigger data to Slack workflow
-       id: slack
-       uses: slackapi/slack-github-action@v1.19.0
+     - name: Notification Slack
+       uses: rtCamp/action-slack-notify@v2
        env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_CHANNEL: pocdotnet
+        SLACK_TITLE: Agora vai
+        SLACK_USERNAME: BotCI
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_MESSAGE: "This is your custom message."
