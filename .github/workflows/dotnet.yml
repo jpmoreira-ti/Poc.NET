@@ -29,12 +29,8 @@ jobs:
        with:
          name: 'build'
          path: ${{github.workspace}}/${{env.file_name}}
-
-   messageSlack:
-     runs-on: ubuntu-latest
-     steps:
      - name: Notification Slack
-       uses: actions/setup-dotnet@v2
+       uses: actions/action-slack-notify@v2
        env:
          SLACK_CHANNEL: pocdotnet
          SLACK_TITLE: Teste
