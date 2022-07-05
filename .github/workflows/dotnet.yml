@@ -55,7 +55,7 @@ jobs:
        if: ${{failure()}}
        run: |
         ls -la
-        echo ${{github.workspace}}/${{env.file_name}}
+        cat ${{github.workspace}}/${{env.file_name}}
          
      # notify by slack    
      - name: Notification Slack
