@@ -8,13 +8,12 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/jpmoreira@v1
     - name: Setup .NET
-      uses: actions/setup-dotnet@v2
+      uses: actions/jpmoreira@v1
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
@@ -34,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Notification Slack
-      uses: actions/setup-dotnet@v2
+      uses: actions/jpmoreira@v1
       env:
         SLACK_CHANNEL: pocdotnet
         SLACK_TITLE: Teste
