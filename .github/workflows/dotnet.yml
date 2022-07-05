@@ -30,7 +30,7 @@ jobs:
          name: 'build'
          path: ${{github.workspace}}/${{env.file_name}}
      - name: Notification Slack
-       uses: actions/action-slack-notify@v2
+       uses: actions/slack-notify@v2
        env:
          SLACK_CHANNEL: pocdotnet
          SLACK_TITLE: Teste
