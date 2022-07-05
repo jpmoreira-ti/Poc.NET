@@ -26,6 +26,10 @@ jobs:
      # build project
      - name: Build
        run: dotnet build --no-restore
+       
+     # run tests
+     - name: Integration Tests
+       run: dotnet test --no-restore
          
      # notify by slack    
      - name: Notification Slack
