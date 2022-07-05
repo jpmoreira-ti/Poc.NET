@@ -1,0 +1,28 @@
+﻿{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "date",
+      "temperatureC",
+      "temperatureF",
+      "summary"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "date": {
+        "type": "string",
+        "pattern": "^[0-9:A-Z.-]*$"
+      },
+      "temperatureC": {
+        "type": "number"
+      },
+      "temperatureF": {
+        "type": "number"
+      },
+      "summary": {
+        "type": "string"
+      }
+    }
+  }
+}
