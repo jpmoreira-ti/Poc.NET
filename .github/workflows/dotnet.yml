@@ -1,5 +1,4 @@
 name: CI
-
 on:
    push:
      branches: [ "master" ]
@@ -26,10 +25,36 @@ jobs:
      # build project
      - name: Build
        run: dotnet build --no-restore
-       
+    
+     # config report
+     - name: Set Test Title
+       run: | 
+            if ${{ github.event_name == 'pull_request' }}
+            then
+              echo "title=Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})" >> $GITHUB_ENV
+              echo "file_name=TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md" >> $GITHUB_ENV              
+            else
+              echo "title=Test Run ${{github.run_number}}" >> $GITHUB_ENV
+              echo "file_name=TestReport.${{github.run_number}}.md" >> $GITHUB_ENV
+            fi
+            
      # run tests
      - name: Integration Tests
-       run: dotnet test --no-restore
+       run: dotnet test --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};" 
+       
+     # upload report as build artifact
+     - name: Upload a Build Artifact
+       uses: actions/upload-artifact@v2
+       if: ${{failure()}}
+       with:
+        name: 'Test Run'
+        path: ${{github.workspace}}/${{env.file_name}}
+     
+     # Set variables 
+     - name: Set variables
+       run: |
+        VER=$(cat $LogFileName)
+        echo "file_content=$VER" >> $GITHUB_ENV   
          
      # notify by slack    
      - name: Notification Slack
@@ -38,7 +63,8 @@ jobs:
        env:
         SLACK_CHANNEL: pocdotnet
         SLACK_COLOR: ${{ job.status }}
-        SLACK_ICON: https://github.com/rtCamp.png?size=48
-        SLACK_TITLE: Teste com .NET
-        SLACK_USERNAME: POCTesteIntegrado
+        SLACK_ICON: https://avatars.slack-edge.com/2021-01-27/1681964022883_e2b796f58399d6ab552f_512.jpg
+        SLACK_TITLE: '${{ job.status }}'
+        SLACK_MESSAGE: '${{ github.event.pull_request.html_url || github.event.head_commit.url }} \n ${{file_content}}'
+        SLACK_USERNAME: Poc_Teste_Integrado
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
