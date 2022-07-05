@@ -38,7 +38,7 @@ jobs:
        env:
         SLACK_CHANNEL: pocdotnet
         SLACK_COLOR: ${{ job.status }}
-        SLACK_ICON: ':rocket:'
+        SLACK_ICON: https://www.devision.com/wp-content/uploads/2017/10/devopsimage.png
         SLACK_TITLE: Teste com .NET
         SLACK_USERNAME: POCTesteIntegrado
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
