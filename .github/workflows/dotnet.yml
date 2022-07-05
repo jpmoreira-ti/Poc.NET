@@ -11,6 +11,11 @@ jobs:
      runs-on: ubuntu-latest
      env:
       config: 'Homolog'
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+      SLACK_CHANNEL: pocdotnet
+      SLACK_TITLE: Agora vai
+      SLACK_USERNAME: BotCI      
+      SLACK_MESSAGE: "Poc de teste integrado"
       
      steps:
      - uses: actions/checkout@v3
@@ -25,7 +30,7 @@ jobs:
        
      # build project
      - name: Build
-       run: dotnet build --no-restore
+       run: dotnet build --configuration $config --no-restore
        
      # run tests
      - name: Integration Tests
@@ -33,10 +38,7 @@ jobs:
          
      # notify by slack    
      - name: Notification Slack
-       uses: rtCamp/action-slack-notify@v2
-       env:
-        SLACK_CHANNEL: pocdotnet
-        SLACK_TITLE: Agora vai
-        SLACK_USERNAME: BotCI
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-        SLACK_MESSAGE: "This is your custom message."
+     - uses: openhousepvt/slack@v1.3.2
+       with: 
+        status: ${{ job.status }}
+       if: always()
