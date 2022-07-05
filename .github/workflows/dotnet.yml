@@ -54,7 +54,8 @@ jobs:
      - name: Set variables
        if: ${{failure()}}
        run: |
-        echo ${{env.LogFileName}}
+        ls -la
+        echo ${{github.workspace}}/${{env.file_name}}
          
      # notify by slack    
      - name: Notification Slack
