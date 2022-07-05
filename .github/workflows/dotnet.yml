@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/jpmoreira-ti@v1
+    - uses: jpmoreira-ti/dotnet-setup@v1
     - name: Setup .NET
       uses: actions/jpmoreira-ti@v1
       with:
@@ -23,7 +23,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Upload a Build Artifact
-      uses: actions/jpmoreira-ti@v1
+      uses: jpmoreira-ti/report-tests@v1
       if: ${{always()}}
       with:
         name: 'build'
@@ -33,10 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Notification Slack
-      uses: actions/jpmoreira-ti@v1
+      uses: jpmoreira-ti/action-slack-notify@v1
       env:
         SLACK_CHANNEL: pocdotnet
         SLACK_TITLE: Teste
-        SLACK_USERNAME: BotCI
+        SLACK_USERNAME: Teste-Integrado
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
         SLACK_MESSAGE: "This is your custom message." 
