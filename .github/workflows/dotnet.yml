@@ -33,10 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Notification Slack
-      uses: jpmoreira-ti/action-slack-notify@v1
+      uses: jpmoreira-ti/action-slack-notify@v2
       env:
         SLACK_CHANNEL: pocdotnet
         SLACK_TITLE: Teste
-        SLACK_USERNAME: Teste-Integrado
+        SLACK_USERNAME: BotCI
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
         SLACK_MESSAGE: "This is your custom message." 
