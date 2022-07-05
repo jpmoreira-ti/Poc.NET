@@ -49,20 +49,6 @@ namespace WebAPI5.TesteIntegrado
             var response = await _testContext.Client.GetAsync(" / WeatherForecast");
             response.StatusCode.Should().Be(HttpStatusCode.NoContent);
         }
-
-        [Fact]
-        public async Task GetShouldReturnBadRequest()
-        {
-            var response = await _testContext.Client.GetAsync("/WeatherForecast");
-            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-        }
-
-        [Fact]
-        public async Task GetShouldReturnBadGateway()
-        {
-            var response = await _testContext.Client.GetAsync("/WeatherForecast");
-            response.StatusCode.Should().Be(HttpStatusCode.BadGateway);
-        }
     }
 }
 
