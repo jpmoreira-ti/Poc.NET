@@ -1,42 +1,43 @@
 name: .NET
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+ on:
+   push:
+     branches: [ "master" ]
+   pull_request:
+     branches: [ "master" ]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+ jobs:
+   build:
 
-    steps:
-    - uses: actions/setup-dotnet@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
-    - name: Upload a Build Artifact
-      uses: actions/report-tests@v2
-      if: ${{always()}}
-      with:
-        name: 'build'
-        path: ${{github.workspace}}/${{env.file_name}}
-        
-  messageSlack:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Notification Slack
-      uses: actions/action-slack-notify@v2
-      env:
-        SLACK_CHANNEL: pocdotnet
-        SLACK_TITLE: Teste
-        SLACK_USERNAME: BotCI
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-        SLACK_MESSAGE: "This is your custom message." 
+     runs-on: ubuntu-latest
+
+     steps:
+     - uses: actions/checkout@v3
+     - name: Setup .NET
+       uses: actions/setup-dotnet@v2
+       with:
+         dotnet-version: 5.0.x
+     - name: Restore dependencies
+       run: dotnet restore
+     - name: Build
+       run: dotnet build --no-restore
+     - name: Test
+       run: dotnet test --no-build --verbosity normal
+     - name: Upload a Build Artifact
+       uses: actions/setup-dotnet@v2
+       if: ${{always()}}
+       with:
+         name: 'build'
+         path: ${{github.workspace}}/${{env.file_name}}
+
+   messageSlack:
+     runs-on: ubuntu-latest
+     steps:
+     - name: Notification Slack
+       uses: actions/setup-dotnet@v2
+       env:
+         SLACK_CHANNEL: pocdotnet
+         SLACK_TITLE: Teste
+         SLACK_USERNAME: BotCI
+         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+         SLACK_MESSAGE: "This is your custom message." 
