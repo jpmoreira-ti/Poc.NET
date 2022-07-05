@@ -34,6 +34,7 @@
       "WebAPI5.TesteIntegrado/1.0.0": {
         "dependencies": {
           "FluentAssertions": "6.7.0",
+          "LiquidTestReports.Markdown": "1.0.9",
           "Microsoft.AspNetCore.Mvc.Testing": "5.0.17",
           "Microsoft.NET.Test.Sdk": "16.9.4",
           "Newtonsoft.Json.Schema": "3.0.14",
@@ -308,7 +309,7 @@
           "System.Threading.Timer.Reference": "5.0.0.0",
           "System.Transactions": "4.0.0.0",
           "System.Transactions.Local": "5.0.0.0",
-          "System.ValueTuple": "4.0.3.0",
+          "System.ValueTuple.Reference": "4.0.3.0",
           "System.Web": "4.0.0.0",
           "System.Web.HttpUtility": "5.0.0.0",
           "System.Windows": "4.0.0.0",
@@ -332,6 +333,22 @@
         }
       },
       "coverlet.collector/3.0.2": {},
+      "DotLiquid/2.0.333": {
+        "runtime": {
+          "lib/netstandard1.3/DotLiquid.dll": {
+            "assemblyVersion": "2.0.333.0",
+            "fileVersion": "2.0.333.0"
+          }
+        },
+        "resources": {
+          "lib/netstandard1.3/it/DotLiquid.resources.dll": {
+            "locale": "it"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/DotLiquid.dll": {}
+        }
+      },
       "FluentAssertions/6.7.0": {
         "dependencies": {
           "System.Configuration.ConfigurationManager": "4.4.0"
@@ -344,6 +361,37 @@
         },
         "compile": {
           "lib/netcoreapp3.0/FluentAssertions.dll": {}
+        }
+      },
+      "LiquidTestReports.Core/1.0.9": {
+        "dependencies": {
+          "DotLiquid": "2.0.333",
+          "Microsoft.TestPlatform.ObjectModel": "16.9.4",
+          "System.ValueTuple": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/LiquidTestReports.Core.dll": {
+            "assemblyVersion": "1.0.9.0",
+            "fileVersion": "1.0.9.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/LiquidTestReports.Core.dll": {}
+        }
+      },
+      "LiquidTestReports.Markdown/1.0.9": {
+        "dependencies": {
+          "LiquidTestReports.Core": "1.0.9",
+          "Microsoft.TestPlatform.ObjectModel": "16.9.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/LiquidTestReports.Markdown.TestLogger.dll": {
+            "assemblyVersion": "1.0.9.0",
+            "fileVersion": "1.0.9.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/LiquidTestReports.Markdown.TestLogger.dll": {}
         }
       },
       "Microsoft.AspNetCore.Mvc.Testing/5.0.17": {
@@ -1631,6 +1679,7 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "System.ValueTuple/4.5.0": {},
       "System.Xml.ReaderWriter/4.3.0": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -3349,7 +3398,7 @@
         },
         "compileOnly": true
       },
-      "System.ValueTuple/4.0.3.0": {
+      "System.ValueTuple.Reference/4.0.3.0": {
         "compile": {
           "System.ValueTuple.dll": {}
         },
@@ -3454,12 +3503,33 @@
       "path": "coverlet.collector/3.0.2",
       "hashPath": "coverlet.collector.3.0.2.nupkg.sha512"
     },
+    "DotLiquid/2.0.333": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JDbE5dvErMveKVZDw6TvEVbzPnX00DDaK9TJ3Zv/gxQ63IB59z5lkWYhH9XrXw2EPmzF6Sfqf4Lojnfs98TmSQ==",
+      "path": "dotliquid/2.0.333",
+      "hashPath": "dotliquid.2.0.333.nupkg.sha512"
+    },
     "FluentAssertions/6.7.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-PWbow/R3MnYDP8UW7zh/w80rGb+1NufGoNJeuzouTo2bqpvwNTFxbDwF6XWfFZ5IuquL2225Um+qSyZ8jVsT+w==",
       "path": "fluentassertions/6.7.0",
       "hashPath": "fluentassertions.6.7.0.nupkg.sha512"
+    },
+    "LiquidTestReports.Core/1.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Y/ALQ4sMBLZLSSw+Fz0FIB3C+fSFrZffSXgHZhWsc2uVk92I4gWpk/u4397zcclcwzdf44uniOAVm3RtnxxnZA==",
+      "path": "liquidtestreports.core/1.0.9",
+      "hashPath": "liquidtestreports.core.1.0.9.nupkg.sha512"
+    },
+    "LiquidTestReports.Markdown/1.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8fHnajFIoc5UjG7zlcy2bZnDLRIkpOvzyKYWI6NPSELHqhO07IqNAVWdlRUVNa+fwFx64lM0X8ABjXaMIuKVoA==",
+      "path": "liquidtestreports.markdown/1.0.9",
+      "hashPath": "liquidtestreports.markdown.1.0.9.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Mvc.Testing/5.0.17": {
       "type": "package",
@@ -4300,6 +4370,13 @@
       "sha512": "sha512-Z6YfyYTCg7lOZjJzBjONJTFKGN9/NIYKSxhU5GRd+DTwHSZyvWp1xuI5aR+dLg+ayyC5Xv57KiY4oJ0tMO89fQ==",
       "path": "system.threading.timer/4.3.0",
       "hashPath": "system.threading.timer.4.3.0.nupkg.sha512"
+    },
+    "System.ValueTuple/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-okurQJO6NRE/apDIP23ajJ0hpiNmJ+f0BwOlB/cSqTLQlw5upkf+5+96+iG2Jw40G1fCVCyPz/FhIABUjMR+RQ==",
+      "path": "system.valuetuple/4.5.0",
+      "hashPath": "system.valuetuple.4.5.0.nupkg.sha512"
     },
     "System.Xml.ReaderWriter/4.3.0": {
       "type": "package",
@@ -5711,7 +5788,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "System.ValueTuple/4.0.3.0": {
+    "System.ValueTuple.Reference/4.0.3.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

@@ -297,7 +297,10 @@
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/refs/System.Xml.XPath.dll
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/refs/System.Xml.XPath.XDocument.dll
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/refs/WindowsBase.dll
+/Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/DotLiquid.dll
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/FluentAssertions.dll
+/Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/LiquidTestReports.Core.dll
+/Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/LiquidTestReports.Markdown.TestLogger.dll
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/Microsoft.AspNetCore.Mvc.Testing.dll
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/Microsoft.AspNetCore.TestHost.dll
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll
@@ -323,6 +326,7 @@
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/xunit.assert.dll
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/xunit.core.dll
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/xunit.execution.dotnet.dll
+/Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/it/DotLiquid.resources.dll
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll

@@ -42,13 +42,6 @@ namespace WebAPI5.TesteIntegrado
           
             valid.Should().BeTrue();
         }
-
-        [Fact]
-        public async Task GetShouldReturnNoContent()
-        {
-            var response = await _testContext.Client.GetAsync(" / WeatherForecast");
-            response.StatusCode.Should().Be(HttpStatusCode.NoContent);
-        }
     }
 }
 
