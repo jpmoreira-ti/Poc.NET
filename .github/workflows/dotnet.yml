@@ -53,7 +53,7 @@ jobs:
      # Set variables 
      - name: Set variables
        run: |
-        cat ${{github.workspace}}/${{env.file_name}} >> $VER
+        echo ${{github.workspace}}/${{env.file_name}} >> $VER
         echo "env.VER" 
          
      # notify by slack    
