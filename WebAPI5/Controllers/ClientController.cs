@@ -32,7 +32,9 @@ namespace WebAPI5.Controllers
             }
             _repository.Add(client);
             return Ok(
-                "Cliente cadastrado com sucesso!"
+              new {
+                  message = "Cliente cadastrado com sucesso!"
+              }
             );
         }
 
@@ -41,7 +43,10 @@ namespace WebAPI5.Controllers
         {
             _repository.Remove(document);
             return Ok(
-                "Cliente removido com sucesso!"
+                new
+                {
+                    message = "Cliente removido com sucesso!"
+                }
             );
         }
 
