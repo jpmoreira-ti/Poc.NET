@@ -34,6 +34,9 @@
     <None Remove="Schemas\" />
     <None Remove="Schemas\WeatherSchema.json" />
     <None Remove="LiquidTestReports.Markdown" />
+    <None Remove="TestResults\TestReport_20220705114105.md" />
+    <None Remove="TestResults\TestReport_20220705114249.md" />
+    <None Remove="Schemas\ClientSchema.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebAPI5\WebAPI5.csproj" />
@@ -47,9 +50,15 @@
     <None Update="Schemas\WeatherSchema.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Schemas\ClientSchema.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Schemas\WeatherSchema.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schemas\ClientSchema.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

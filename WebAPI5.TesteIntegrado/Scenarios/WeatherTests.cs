@@ -4,8 +4,6 @@ using FluentAssertions;
 using WebAPI5.TesteIntegrado.Fixtures;
 using WebAPI5.TesteIntegrado.Schemas;
 using Xunit;
-using Newtonsoft.Json.Schema;
-using Newtonsoft.Json.Linq;
 using System;
 
 namespace WebAPI5.TesteIntegrado
@@ -14,7 +12,6 @@ namespace WebAPI5.TesteIntegrado
     {
         private readonly TestContext _testContext;
         private string jsonResponse;
-        private string jsonFile;
 
         public WeatherTests()
         {
@@ -29,7 +26,6 @@ namespace WebAPI5.TesteIntegrado
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
             jsonResponse = await response.Content.ReadAsStringAsync();
-
             ChargeSchema.IsValidSchemaArray("WeatherSchema", jsonResponse).Should().BeTrue();
         }
     }

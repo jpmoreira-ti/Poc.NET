@@ -10,6 +10,7 @@
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/xunit.runner.reporters.netcoreapp10.dll
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/xunit.runner.utility.netcoreapp10.dll
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/Schemas/WeatherSchema.json
+/Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/Schemas/ClientSchema.json
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/WebAPI5.TesteIntegrado.deps.json
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/WebAPI5.TesteIntegrado.runtimeconfig.json
 /Users/joaomoreira/Projects/WebAPI5/WebAPI5.TesteIntegrado/bin/Debug/net5.0/WebAPI5.TesteIntegrado.runtimeconfig.dev.json

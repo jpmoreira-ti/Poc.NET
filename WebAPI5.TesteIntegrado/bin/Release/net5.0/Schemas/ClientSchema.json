@@ -1,0 +1,13 @@
+﻿{
+  "type": "object",
+  "required": [
+    "message"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "message": {
+      "type": "string",
+      "pattern": "^[A-Z a-z!]*$"
+    }
+  }
+}

@@ -2,13 +2,10 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using WebAPI5.TesteIntegrado.Fixtures;
-using WebAPI5.TesteIntegrado.Schemas;
 using Xunit;
-using Newtonsoft.Json.Schema;
-using Newtonsoft.Json.Linq;
-using System;
 using System.Net.Http.Json;
 using WebAPI5.Models;
+using WebAPI5.TesteIntegrado.Schemas;
 
 namespace WebAPI5.TesteIntegrado
 {
@@ -16,7 +13,6 @@ namespace WebAPI5.TesteIntegrado
     {
         private readonly TestContext _testContext;
         private string jsonResponse;
-        private string jsonFile;
 
         public ClientTests()
         {
@@ -34,7 +30,8 @@ namespace WebAPI5.TesteIntegrado
 
             var response = await _testContext.Client.PostAsJsonAsync("/Client", client);
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            var json = response.Content.ReadAsStringAsync();
+            jsonResponse = await response.Content.ReadAsStringAsync();
+            ChargeSchema.IsValidSchemaObject("ClientSchema", jsonResponse).Should().BeTrue();
         }
 
         [Fact]
@@ -46,8 +43,7 @@ namespace WebAPI5.TesteIntegrado
             };
 
             var response = await _testContext.Client.GetAsync("/Client/" + client);
-            var data = response.StatusCode.Should().Be(HttpStatusCode.OK);
-            //data.Result.Should().Be("Cliente cadastrado com sucesso!");
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
         [Fact]
@@ -67,8 +63,8 @@ namespace WebAPI5.TesteIntegrado
 
             var response = await _testContext.Client.DeleteAsync("/Client/" + client);
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            var data = response.Content.ReadAsStringAsync();
-            data.Result.Should().Be("Cliente removido com sucesso!");
+            jsonResponse = await response.Content.ReadAsStringAsync();
+            ChargeSchema.IsValidSchemaObject("ClientSchema", jsonResponse).Should().BeTrue();
         }
     }
 }
