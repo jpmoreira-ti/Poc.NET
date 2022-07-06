@@ -32,7 +32,7 @@ jobs:
               echo "title=Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})" >> $GITHUB_ENV
               echo "file_name=TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md" >> $GITHUB_ENV              
             else
-              echo "title=Test Run ${{github.run_number}}" >> $GITHUB_ENV
+              echo "title=Build ${{github.run_number}}" >> $GITHUB_ENV
               echo "file_name=TestReport.${{github.run_number}}.md" >> $GITHUB_ENV
             fi
             
@@ -64,6 +64,6 @@ jobs:
         SLACK_CHANNEL: pocdotnet
         SLACK_COLOR: ${{ job.status }}
         SLACK_ICON: https://avatars.slack-edge.com/2021-01-27/1681964022883_e2b796f58399d6ab552f_512.jpg
-        SLACK_MESSAGE: '${{env.title}}\n${{env.file_name}}'
+        SLACK_MESSAGE: '${{env.title}}/${{env.VER}}'
         SLACK_USERNAME: Poc_Teste_Integrado
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
