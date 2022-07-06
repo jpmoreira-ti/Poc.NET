@@ -24,9 +24,6 @@ jobs:
      - name: Build
        run: dotnet build --no-restore
        
-   Integration_Tests:
-     runs-on: ubuntu-latest
-     steps:
        # config report
      - name: Set Test Title
        run: | 
@@ -58,9 +55,6 @@ jobs:
         export VER="$(cat ${{github.workspace}}/${{env.file_name}})"
         echo "VER=$VER" >> $GITHUB_ENV
     
-   Slack_Notifier:
-     runs-on: ubuntu-latest
-     steps:
      # notify by slack    
      - name: Notification Slack
        uses: rtCamp/action-slack-notify@v2
