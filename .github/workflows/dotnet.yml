@@ -80,41 +80,59 @@ on:
 jobs:
    build:
      runs-on: ubuntu-latest
-     strategy:
-      matrix:
-        dotnet-version: [5.0.x]
-
+     env:
+      config: 'Homolog'
+      
      steps:
-        - uses: actions/checkout@v3
-        - name: Setup dotnet
-          uses: actions/setup-dotnet@v2
-          with:
-            dotnet-version: ${{ matrix.dotnet-version }}
-        - name: Install dependencies
-          run: dotnet restore
-          
-        - name: Test with dotnet
-          run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
-          
-        - name: Upload dotnet test results
-          uses: actions/upload-artifact@v3
-          with:
-            name: dotnet-results-${{ matrix.dotnet-version }}
-            path: TestResults-${{ matrix.dotnet-version }}
-          # Use always() to always run this step to publish test results when there are test failures
-          if: ${{ always() }}
+     - uses: actions/checkout@v3
+     - name: Setup CI
+       uses: actions/setup-dotnet@v2
+       with:
+         dotnet-version: 5.0.x
+     
+     # build dependencies
+     - name: Restore dependencies
+       run: dotnet restore
+       
+     # build project
+     - name: Build
+       run: dotnet build --no-restore
+    
+     # config report
+     - name: Set Test Title
+       run: | 
+            if ${{ github.event_name == 'pull_request' }}
+            then
+              echo "title=Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})" >> $GITHUB_ENV
+              echo "file_name=TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md" >> $GITHUB_ENV              
+            else
+              echo "title=Test Run ${{github.run_number}}" >> $GITHUB_ENV
+              echo "file_name=TestReport.${{github.run_number}}.md" >> $GITHUB_ENV
+            fi
+            
+     # run tests
+     - name: Integration Tests
+       run: dotnet test --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};" 
+       
+     # upload report as build artifact
+     - name: Upload a Build Artifact
+       uses: actions/upload-artifact@v2
+       if: ${{failure()}}
+       with:
+        name: 'Integration Tests'
+        path: ${{github.workspace}}/${{env.file_name}}
      
      # Set variables 
-        - name: Set variables
-          if: ${{failure()}}
-          run: |
-           export VER="$(cat ${{github.workspace}}/${{env.file_name}})"
-           echo "VER=$VER" >> $GITHUB_ENV
+     - name: Set variables
+       if: ${{failure()}}
+       run: |
+        export VER="$(cat ${{github.workspace}}/${{env.file_name}})"
+        echo "VER=$VER" >> $GITHUB_ENV
          
      # notify by slack    
-        - name: Notification Slack
-        - uses: actions-ecosystem/action-slack-notifier@v1
-          with:
+     - name: Notification Slack
+     - uses: actions-ecosystem/action-slack-notifier@v1
+       with:
              slack_token: ${{ secrets.SLACK_WEBHOOK_URL }}
              message: |
                @${{ github.actor }} pushed commits.
