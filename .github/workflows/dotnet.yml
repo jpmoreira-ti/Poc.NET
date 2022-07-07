@@ -53,7 +53,7 @@ jobs:
        if: ${{failure()}}
        run: |
         export VER=$(cat ${{github.workspace}}/${{env.file_name}})
-        echo $VER >> $GITHUB_ENV
+      # echo $VER >> $GITHUB_ENV
 
      # notify by slack    
      - name: Notification Slack
@@ -64,6 +64,6 @@ jobs:
         SLACK_CHANNEL: pocdotnet
         SLACK_COLOR: ${{ job.status }}
         SLACK_ICON: https://avatars.slack-edge.com/2021-01-27/1681964022883_e2b796f58399d6ab552f_512.jpg
-        SLACK_TITLE: 'Teste'
+        SLACK_TITLE: Teste
         SLACK_USERNAME: Poc_Teste_Integrado
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
