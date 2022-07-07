@@ -55,8 +55,8 @@ jobs:
        run: |
         VER=$(cat <<'EOF' >>  ${{github.workspace}}/${{env.file_name}} )
         ${VER} >> $GITHUB_ENV
-         echo guilherme
-         echo  ${{env.VER}}
+        echo guilherme
+        echo  $VER
 
      # notify by slack    
      - name: Notification Slack
