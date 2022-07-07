@@ -59,7 +59,7 @@ jobs:
        env:
         gui: $teste
             
-     # notify by slack    
+     # Notify by slack   
      - name: Send GitHub Action trigger data to Slack workflow
        id: slack
        uses: slackapi/slack-github-action@v1.19.0
