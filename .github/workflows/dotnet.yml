@@ -60,27 +60,11 @@ jobs:
         gui: $teste
             
      # notify by slack    
-     - name: Slack notification
+     - name: Send GitHub Action trigger data to Slack workflow
        id: slack
-       uses: slackapi/slack-github-action@v1.18.0
-       if: ${{always()}}
-       with:
-          payload: |
-            {
-              "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "GitHub Action build result: ${{ job.status }}\ncat ${{github.workspace}}/${{env.file_name}}"
-                  }
-                }
-              ]
-            }
+       uses: slackapi/slack-github-action@v1.19.0
        env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
        
 #        uses: rtCamp/action-slack-notify@v2
 #        if: ${{failure()}}
