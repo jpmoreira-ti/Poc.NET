@@ -54,7 +54,7 @@ jobs:
        if: ${{failure()}}
        run: |
         ver=$(cat ${{github.workspace}}/${{env.file_name}}) 
-        echo 'ver<<EOF' >> $GITHUB_ENV
+        echo ver
 
      # notify by slack    
      - name: Notification Slack
