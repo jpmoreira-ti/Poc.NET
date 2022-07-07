@@ -54,7 +54,8 @@ jobs:
        run: |
         export VER=$(cat ${{github.workspace}}/${{env.file_name}})
         echo "VER=$VER" >> $GITHUB_ENV
-    
+        echo $GITHUB_ENV
+        
      # notify by slack    
      - name: Notification Slack
        uses: rtCamp/action-slack-notify@v2
