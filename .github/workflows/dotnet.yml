@@ -60,7 +60,8 @@ jobs:
             
      # Notify by slack
      - name: Set variables
-     - uses: 8398a7/action-slack@v3
+       uses: 8398a7/action-slack@v3
+       if: ${{failure()}}
        with:
          status: ${{ job.status }}
          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest # selectable (default: repo,message)
