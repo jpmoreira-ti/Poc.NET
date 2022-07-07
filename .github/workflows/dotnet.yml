@@ -60,14 +60,18 @@ jobs:
         gui: $teste
             
      # Notify by slack   
-     - name: Send GitHub Action trigger data to Slack workflow
+     - name: Send custom JSON data to Slack workflow
        id: slack
        uses: slackapi/slack-github-action@v1.19.0
        if: ${{failure()}}
        with:
-        channel-id: pocdotnet
+           payload: |
+               {
+                 "key": "value",
+                 "foo": "teste"
+               }
        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
        
 #        uses: rtCamp/action-slack-notify@v2
 #        if: ${{failure()}}
