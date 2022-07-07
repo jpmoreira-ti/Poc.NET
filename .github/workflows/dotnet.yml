@@ -52,7 +52,7 @@ jobs:
      - name: Set variables
        if: ${{failure()}}
        run: |
-        echo "ver=cat ${{github.workspace}}/${{env.file_name}}" >> $GITHUB_ENV
+        echo "ver=$(cat ${{github.workspace}}/${{env.file_name}})" >> $GITHUB_ENV
 
      # notify by slack    
      - name: Notification Slack
