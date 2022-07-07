@@ -9,7 +9,6 @@ jobs:
    build:
      runs-on: ubuntu-latest
      
-      
      steps:
      - uses: actions/checkout@v3
      - name: Setup CI
@@ -59,22 +58,22 @@ jobs:
        env:
         gui: $teste
             
-     # Notify by slack   
-     - name: Send custom JSON data to Slack workflow
+     # Notify by slack
+     - name: Notify
      - uses: 8398a7/action-slack@v3
        if: ${{failure()}}
        with:
-          status: custom
-          fields: workflow,job,commit,repo,ref,author,took
-          custom_payload: |
-            {
-              attachments: [{
-                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
-              }]
-            }
-     env:
-       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+             status: custom
+             fields: workflow,job,commit,repo,ref,author,took
+             custom_payload: |
+               {
+                 attachments: [{
+                   color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+                   text: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
+                 }]
+               }
+       env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
        
 #        uses: rtCamp/action-slack-notify@v2
 #        if: ${{failure()}}
