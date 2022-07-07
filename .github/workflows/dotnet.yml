@@ -54,7 +54,7 @@ jobs:
        if: ${{failure()}}
        run: |
         cat ${{github.workspace}}/${{env.file_name}} >> $GITHUB_ENV  
-        echo ${{GITHUB_ENV}}
+        echo "${{GITHUB_ENV}}"
 
      # notify by slack    
      - name: Notification Slack
