@@ -61,13 +61,20 @@ jobs:
             
      # notify by slack    
      - name: Notification Slack
-       uses: rtCamp/action-slack-notify@v2
-       if: ${{failure()}}
-       env:
-        MSG_MINIMAL: event,commit
-        SLACK_CHANNEL: pocdotnet
-        SLACK_COLOR: ${{ job.status }}
-        SLACK_ICON: https://avatars.slack-edge.com/2021-01-27/1681964022883_e2b796f58399d6ab552f_512.jpg
-        SLACK_MESSAGE: ${{env.gui}}
-        SLACK_USERNAME: Poc_Teste_Integrado
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+       run: |
+        POST https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
+         Content-type: application/json
+         {
+             "text": "Hello, world."
+         }
+       
+#        uses: rtCamp/action-slack-notify@v2
+#        if: ${{failure()}}
+#        env:
+#         MSG_MINIMAL: event,commit
+#         SLACK_CHANNEL: pocdotnet
+#         SLACK_COLOR: ${{ job.status }}
+#         SLACK_ICON: https://avatars.slack-edge.com/2021-01-27/1681964022883_e2b796f58399d6ab552f_512.jpg
+#         SLACK_MESSAGE: ${{env.gui}}
+#         SLACK_USERNAME: Poc_Teste_Integrado
+#         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
