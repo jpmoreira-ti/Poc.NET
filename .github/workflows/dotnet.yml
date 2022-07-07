@@ -60,7 +60,7 @@ jobs:
         gui: $teste
             
      # notify by slack    
-     - name: Send custom JSON data to Slack workflow
+     - name: Slack notification
        id: slack
        uses: slackapi/slack-github-action@v1.18.0
        if: ${{always()}}
