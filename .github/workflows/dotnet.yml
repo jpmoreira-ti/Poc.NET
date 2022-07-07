@@ -61,11 +61,12 @@ jobs:
             
      # notify by slack    
      - name: Notification Slack
+       if: ${{failure()}}
        run: |
         POST https://hooks.slack.com/services/T0ZHLME6P/B03N8LBB97F/vo8Pkxjnff1GSgb
          Content-type: application/json
          {
-             "text": "Hello, world."
+             "text": "Testando!"
          }
        
 #        uses: rtCamp/action-slack-notify@v2
