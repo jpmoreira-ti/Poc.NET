@@ -54,6 +54,7 @@ jobs:
        run: |
         export VER=$(cat ${{github.workspace}}/${{env.file_name}})
         echo $VER >> $GITHUB_ENV
+        echo $VER
         echo $GITHUB_ENV
         
      # notify by slack    
