@@ -62,6 +62,7 @@ jobs:
      # Notify by slack   
      - name: Send custom JSON data to Slack workflow
      - uses: 8398a7/action-slack@v3
+       if: ${{failure()}}
        with:
           status: custom
           fields: workflow,job,commit,repo,ref,author,took
@@ -74,7 +75,6 @@ jobs:
             }
      env:
        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-     if: always() # Pick up events even if the job fails or is canceled.
        
 #        uses: rtCamp/action-slack-notify@v2
 #        if: ${{failure()}}
