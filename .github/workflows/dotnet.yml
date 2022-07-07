@@ -66,6 +66,6 @@ jobs:
         SLACK_CHANNEL: pocdotnet
         SLACK_COLOR: ${{ job.status }}
         SLACK_ICON: https://avatars.slack-edge.com/2021-01-27/1681964022883_e2b796f58399d6ab552f_512.jpg
-        SLACK_MESSAGE: '${{GITHUB_ENV}}'
+        SLACK_MESSAGE: 'xpto'
         SLACK_USERNAME: Poc_Teste_Integrado
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
