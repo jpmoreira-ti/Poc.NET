@@ -56,6 +56,9 @@ jobs:
             teste=cat <<'EOF' >>  ${{github.workspace}}/${{env.file_name}}
             echo "ver=guilherme" >> $GITHUB_ENV     
             echo ${{env.ver}}
+       env:
+        gui: teste
+            
      # notify by slack    
      - name: Notification Slack
        uses: rtCamp/action-slack-notify@v2
