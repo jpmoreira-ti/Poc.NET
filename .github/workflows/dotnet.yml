@@ -60,9 +60,12 @@ jobs:
             
      # Notify by slack
      - name: Checkout
-       uses: actions/checkout@v1
        if: ${{failure()}}
+       uses: actions/checkout@v1
+       
      - run: touch test.txt
+       if: ${{failure()}}
+
        
      # Notify by slack 2  
      - name: Upload to slack step
