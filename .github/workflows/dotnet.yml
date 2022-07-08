@@ -38,31 +38,15 @@ jobs:
             
      - name: Integration Tests
        run: dotnet test --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};" 
-        
-     - name: Notify by slack 
-       uses: 8398a7/action-slack@v3
+
+     - name: 'Post summary to Slack'
+       if: always() && github.event_name == 'push' # Only run on main
+       needs:
+         - Restore dependencies
+         - Build
+         - Set Test Title
+         - Integration Tests
        with:
-          status: custom
-          fields: workflow,job,commit,repo,ref,author,took
-          custom_payload: |
-           {
-             text: "Resultado:",
-             attachments: [{
-               fallback: 'fallback',
-               color: '${{job.status}}'.toUpperCase(),
-               title: 'CI Result',
-               text: 'Succeeded',
-               fields: [{
-                 title: 'Status',
-                 value: '${{job.status}}'.toUpperCase(),
-                 short: true
-               },
-                 title: '${{env.title}}',
-                 value: '${{github.workspace}}/${{env.file_name}}',
-                 short: false
-               }],
-               actions: [{
-               }]
-             }]
-           }
-       if: ${{failure()}}  
+              success-emoji: ':heavy-check-mark:'
+              skipped-emoji: ':heavy-minus-sign:'
+              failed-emoji: ':heavy-cross-mark:' 
