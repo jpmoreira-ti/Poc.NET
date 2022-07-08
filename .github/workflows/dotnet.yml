@@ -74,7 +74,7 @@ jobs:
        uses: adrey/slack-file-upload-action@master
        if: ${{failure()}}
        with:
-          token: ${{ secrets.SLACK_WEBHOOK_URL }}
+          token: ${{ secrets.SLACK_TOKEN }}
           path: ${{github.workspace}}/${{env.file_name}}
           channel: pocdotnet
        
