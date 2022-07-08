@@ -70,13 +70,20 @@ jobs:
 
        
      # Notify by slack  
-     - name: Upload to slack step
-       uses: adrey/slack-file-upload-action@master
-       if: ${{failure()}}
-       with:
-          token: ${{ secrets.SLACK_TOKEN }}
-          path: ${{github.workspace}}/${{env.file_name}}
-          channel: pocdotnet
+#      - name: Upload to slack step
+#        uses: adrey/slack-file-upload-action@master
+#        if: ${{failure()}}
+#        with:
+#           token: ${{ secrets.SLACK_TOKEN }}
+#           path: ${{github.workspace}}/${{env.file_name}}
+#           channel: pocdotnet
+          
+    # Notify by slack      
+     - name: Send GitHub Action trigger data to Slack workflow
+       id: slack
+       uses: slackapi/slack-github-action@v1.19.0
+       env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}      
        
 #        uses: rtCamp/action-slack-notify@v2
 #        if: ${{failure()}}
