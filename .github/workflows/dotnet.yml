@@ -47,4 +47,4 @@ jobs:
        with:
           token: ${{ secrets.SLACK_TOKEN }}
           path: ${{github.workspace}}/${{env.file_name}}
-          channel: pocdotnet
+          channel: 'pocdotnet'
