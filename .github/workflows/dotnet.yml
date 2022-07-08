@@ -41,32 +41,32 @@ jobs:
        run: dotnet test --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};" 
        
      # upload report as build artifact
-     - name: Upload a Build Artifact
-       uses: actions/upload-artifact@v2
-       if: ${{failure()}}
-       with:
-        name: 'Integration Tests'
-        path: ${{github.workspace}}/${{env.file_name}}
+     # - name: Upload a Build Artifact
+    #    uses: actions/upload-artifact@v2
+    #    if: ${{failure()}}
+    #    with:
+     #    name: 'Integration Tests'
+     #    path: ${{github.workspace}}/${{env.file_name}}
      
      # Set variables 
-     - name: Set variables
-       if: ${{failure()}}
-       run: |
-            export teste=cat <<'EOF' >>  ${{github.workspace}}/${{env.file_name}}
-            echo "ver=guilherme" >> $GITHUB_ENV     
-            echo ${{env.ver}}
-       env:
-        gui: $teste
+   #  - name: Set variables
+   #    if: ${{failure()}}
+   #    run: |
+   #         export teste=cat <<'EOF' >>  ${{github.workspace}}/${{env.file_name}}
+    #        echo "ver=guilherme" >> $GITHUB_ENV     
+   #         echo ${{env.ver}}
+   #    env:
+    #    gui: $teste
             
      # Notify by slack
-     - name: Checkout
-       if: ${{failure()}}
-       uses: actions/checkout@v1
+   #  - name: Checkout
+    #   if: ${{failure()}}
+    #   uses: actions/checkout@v1
        
-     - run: |
-            touch test.txt
-            cat ${{github.workspace}}/${{env.file_name}} > test.txt
-       if: ${{failure()}}
+   #  - run: |
+   #         touch test.txt
+       #     cat ${{github.workspace}}/${{env.file_name}} > test.txt
+    #   if: ${{failure()}}
 
        
      # Notify by slack 2  
@@ -75,7 +75,7 @@ jobs:
        if: ${{failure()}}
        with:
           token: ${{ secrets.SLACK_WEBHOOK_URL }}
-          path: test.txt
+          path: ${{github.workspace}}/${{env.file_name}}
           channel: pocdotnet
        
 #        uses: rtCamp/action-slack-notify@v2
