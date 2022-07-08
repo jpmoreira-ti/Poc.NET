@@ -50,7 +50,7 @@ jobs:
              attachments: [{
                "author_name": "8398a7@action-slack", // json
                fallback: 'fallback',
-               color: 'good',
+               color: '${{job.status}}',
                title: 'CI Result',
                text: 'Succeeded',
                fields: [{
@@ -64,8 +64,8 @@ jobs:
                  short: true
                },
                {
-                 title: 'long title1',
-                 value: 'long value1',
+                 title: '${{env.title}}',
+                 value: '${{github.workspace}}/${{env.file_name}}',
                  short: false
                }],
                actions: [{
