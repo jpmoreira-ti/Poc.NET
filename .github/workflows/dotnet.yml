@@ -59,21 +59,18 @@ jobs:
         gui: $teste
             
      # Notify by slack
-     - name: Notify
-       uses: 8398a7/action-slack@v3
+     - name: Checkout
+       uses: actions/checkout@v1
+     - run: echo "Test file " > test.txt
+       
+     # Notify by slack 2  
+     - name: Upload to slack step
+       uses: adrey/slack-file-upload-action@master
        if: ${{failure()}}
        with:
-          status: custom
-          fields: workflow,job,commit,repo,ref,author,took
-          custom_payload: |
-            {
-              attachments: [{
-                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
-              }]
-            }
-       env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          token: ${{ secrets.SLACK_WEBHOOK_URL }}
+          path: test.txt
+          channel: pocdotnet
        
 #        uses: rtCamp/action-slack-notify@v2
 #        if: ${{failure()}}
