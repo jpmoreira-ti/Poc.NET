@@ -41,42 +41,10 @@ jobs:
 
      - name: Set COMMIT_MESSAGE
        run: echo "COMMIT_MESSAGE=${{ github.event.head_commit.message }}" | tr '\n' ' ' >> $GITHUB_ENV
-       
-     - name: Slack Notification on SUCCESS
-       uses: tokorom/action-slack-incoming-webhook@main
-       if: ${{success()}}
-       with:
-          text: 'Execução ${{job.status}}! :rocket:'
-          attachments: |
-            [
-              {
-                "color": "${{job.status}}",
-                "author_name": "${{ github.actor }}",
-                "author_icon": "${{ github.event.sender.avatar_url }}",
-                "fields": [
-                  {
-                    "title": "${{env.title}}:",
-                    "value": "${{ github.event.repository.url }}/actions/runs/${{ github.run_id }}"
-                  },
-                  {
-                    "title": "Commit:",
-                    "value": "${{ env.COMMIT_MESSAGE }}"
-                  },
-                  {
-                    "title": "Compare com último commit:",
-                    "value": "${{ github.event.compare }}"
-                  },
-                  {
-                    "title": "Relatório de testes:",
-                    "value": "${{github.workspace}}/${{env.file_name}};Title=${{env.title}}"
-                  }
-                ]
-              }
-            ]
             
      - name: Slack Notification on FAILURE
        uses: tokorom/action-slack-incoming-webhook@main
-       if: ${{failure()}}
+       if: ${{always()}}
        with:
           text: 'Execução ${{job.status}}!'
           attachments: |
@@ -125,7 +93,7 @@ jobs:
                      },
                      {
                         "type": "mrkdwn",
-                        "text": "${{github.workspace}}/${{env.file_name}};Title=${{env.title}}"
+                        "text": "${{github.workspace}}/${{env.file_name}}"
                      }
                   ]
                }
