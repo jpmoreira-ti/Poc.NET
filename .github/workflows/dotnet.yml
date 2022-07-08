@@ -52,6 +52,7 @@ jobs:
      - uses: actions/checkout@v2
      - name: Slack Notification
        uses: rtCamp/action-slack-notify@v2
+       if: ${{failure()}}
        env:
         SLACK_CHANNEL: pocdotnet
         SLACK_COLOR: ${{ job.status }}
