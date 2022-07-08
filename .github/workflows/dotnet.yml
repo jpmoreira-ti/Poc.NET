@@ -40,7 +40,7 @@ jobs:
        run: dotnet test --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};" 
         
      - name: Notify by slack 
-     - uses: 8398a7/action-slack@v3
+       uses: 8398a7/action-slack@v3
        with:
           status: custom
           fields: workflow,job,commit,repo,ref,author,took
