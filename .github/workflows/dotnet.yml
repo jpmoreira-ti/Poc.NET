@@ -8,6 +8,9 @@ on:
 jobs:
    build:
      runs-on: ubuntu-latest
+     env:
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+      SLACK_CHANNEL: pocdotnet
      
      steps:
      - uses: actions/checkout@v3
@@ -16,15 +19,12 @@ jobs:
        with:
          dotnet-version: 5.0.x
      
-     # Build dependencies
      - name: Restore dependencies
        run: dotnet restore
        
-     # Build project
      - name: Build
        run: dotnet build --no-restore
        
-     # Config report
      - name: Set Test Title
        run: | 
             if ${{ github.event_name == 'pull_request' }}
@@ -36,26 +36,19 @@ jobs:
               echo "file_name=TestReport.${{github.run_number}}.md" >> $GITHUB_ENV
             fi
             
-     # Run tests
      - name: Integration Tests
        run: dotnet test --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};" 
-       
-     # Notify by slack  
-#      - name: Upload to slack step
-#        uses: adrey/slack-file-upload-action@master
-#        if: ${{failure()}}
-#        with:
-#           token: ${{ secrets.SLACK_TOKEN }}
-#           path: ${{github.workspace}}/${{env.file_name}}
-#           channel: 'pocdotnet'
-          
-     - uses: actions/checkout@v2
-     - name: Slack Notification
-       uses: rtCamp/action-slack-notify@v2
-       if: ${{failure()}}
-       env:
-        SLACK_CHANNEL: pocdotnet
-        SLACK_COLOR: ${{ job.status }}
-        SLACK_ICON: https://github.com/rtCamp.png?size=48
-        SLACK_MESSAGE: ${{github.workspace}}/${{env.file_name}}
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}    
+        
+     - name: Notify by slack 
+     - uses: 8398a7/action-slack@v3
+       with:
+          status: custom
+          fields: workflow,job,commit,repo,ref,author,took
+          custom_payload: |
+            {
+              attachments: [{
+                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+                text: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
+              }]
+            }
+       if: ${{failure()}}  
