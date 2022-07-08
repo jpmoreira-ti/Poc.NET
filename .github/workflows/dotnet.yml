@@ -61,6 +61,7 @@ jobs:
      # Notify by slack
      - name: Checkout
        uses: actions/checkout@v1
+       if: ${{failure()}}
      - run: echo "Test file " > test.txt
        
      # Notify by slack 2  
