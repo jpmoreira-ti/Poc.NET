@@ -102,8 +102,14 @@ jobs:
                    {
                     "title": "Relatório de testes:",
                     "value": "${{github.workspace}}/${{env.file_name}}"
-                  }
+                  },
+                  {
+                  "type": "section",
+                  "text": {
+                     "type": "mrkdwn",
+                     "text": "This is a mrkdwn section block :ghost: *this is bold*, and ~this is crossed out~, and <https://google.com|this is a link>"
+                     }
+                  },
                 ]
               }
             ]
-      
