@@ -104,14 +104,29 @@ jobs:
                   }
                 ]
               }
-            ],
+            ]
+            
           blocks: |
             [
-              {
-               "type": "section",
-               "text": {
-                  "type": "mrkdwn",
-                  "text": "This is a mrkdwn section block :ghost: *this is bold*, and ~this is crossed out~, and <https://google.com|this is a link>"
+               {
+                  "type": "section",
+                  "text": {
+                     "type": "mrkdwn",
+                     "text": "This is a mrkdwn section block :ghost: *this is bold*, and ~this is crossed out~, and <https://google.com|this is a link>"
                   }
+               },
+               {
+                  "type": "context",
+                  "elements": [
+                     {
+                        "type": "image",
+                        "image_url": "https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg",
+                        "alt_text": "cute cat"
+                     },
+                     {
+                        "type": "mrkdwn",
+                        "text": "${{github.workspace}}/${{env.file_name}};Title=${{env.title}}"
+                     }
+                  ]
                }
             ]
