@@ -46,39 +46,7 @@ jobs:
        uses: tokorom/action-slack-incoming-webhook@main
        if: ${{success()}}
        with:
-          text: 'Execução passou! :rocket:'
-          attachments: |
-            [
-              {
-                "color": "${{job.status}}",
-                "author_name": "${{ github.actor }}",
-                "author_icon": "${{ github.event.sender.avatar_url }}",
-                "fields": [
-                  {
-                    "title": "Commit:",
-                    "value": "${{ env.COMMIT_MESSAGE }}"
-                  },
-                  {
-                    "title": "Repositório GitHub",
-                    "value": "${{ github.event.repository.url }}/actions/runs/${{ github.run_id }}"
-                  },
-                  {
-                    "title": "Compare URL",
-                    "value": "${{ github.event.compare }}"
-                  },
-                   {
-                    "title": "Relatório de testes",
-                    "value": "${{github.workspace}}/${{env.file_name}}"
-                  }
-                ]
-              }
-            ]
-            
-     - name: Slack Notification on FAILURE
-       uses: tokorom/action-slack-incoming-webhook@main
-       if: ${{failure()}}
-       with:
-          text: 'Execução falhou! :Bad:'
+          text: 'Execução ${{job.status}}! :rocket:'
           attachments: |
             [
               {
@@ -94,22 +62,46 @@ jobs:
                     "title": "Commit:",
                     "value": "${{ env.COMMIT_MESSAGE }}"
                   },
-                  
                   {
                     "title": "Compare com último commit:",
                     "value": "${{ github.event.compare }}"
                   },
-                   {
+                  {
                     "title": "Relatório de testes:",
                     "value": "${{github.workspace}}/${{env.file_name}}"
+                  }
+                ]
+              }
+            ]
+            
+     - name: Slack Notification on FAILURE
+       uses: tokorom/action-slack-incoming-webhook@main
+       if: ${{failure()}}
+       with:
+          text: 'Execução ${{job.status}}!'
+          attachments: |
+            [
+              {
+                "color": "${{job.status}}",
+                "author_name": "${{ github.actor }}",
+                "author_icon": "${{ github.event.sender.avatar_url }}",
+                "fields": [
+                  {
+                    "title": "Build ${{ github.run_id }}:",
+                    "value": "${{ github.event.repository.url }}/actions/runs/${{ github.run_id }}"
                   },
                   {
-                  "type": "section",
-                  "text": {
-                     "type": "mrkdwn",
-                     "text": "This is a mrkdwn section block :ghost: *this is bold*, and ~this is crossed out~, and <https://google.com|this is a link>"
-                     }
+                    "title": "Commit:",
+                    "value": "${{ env.COMMIT_MESSAGE }}"
                   },
+                  {
+                    "title": "Compare com último commit:",
+                    "value": "${{ github.event.compare }}"
+                  },
+                  {
+                    "title": "Relatório de testes:",
+                    "value": "${{github.workspace}}/${{env.file_name}}"
+                  }
                 ]
               }
             ]
