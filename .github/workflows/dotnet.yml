@@ -41,10 +41,20 @@ jobs:
        run: dotnet test --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};" 
        
      # Notify by slack  
-     - name: Upload to slack step
-       uses: adrey/slack-file-upload-action@master
-       if: ${{failure()}}
-       with:
-          token: ${{ secrets.SLACK_TOKEN }}
-          path: ${{github.workspace}}/${{env.file_name}}
-          channel: 'pocdotnet'
+#      - name: Upload to slack step
+#        uses: adrey/slack-file-upload-action@master
+#        if: ${{failure()}}
+#        with:
+#           token: ${{ secrets.SLACK_TOKEN }}
+#           path: ${{github.workspace}}/${{env.file_name}}
+#           channel: 'pocdotnet'
+          
+     - uses: actions/checkout@v2
+     - name: Slack Notification
+       uses: rtCamp/action-slack-notify@v2
+       env:
+        SLACK_CHANNEL: pocdotnet
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_ICON: https://github.com/rtCamp.png?size=48
+        SLACK_MESSAGE: ${{github.workspace}}/${{env.file_name}}
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}    
