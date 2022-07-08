@@ -63,7 +63,7 @@ jobs:
        if: ${{failure()}}
        uses: actions/checkout@v1
        
-     - run: touch test.txt
+     - run: cat ${{github.workspace}}/${{env.file_name}} > test.txt
        if: ${{failure()}}
 
        
