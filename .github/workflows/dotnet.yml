@@ -62,7 +62,7 @@ jobs:
      - name: Checkout
        uses: actions/checkout@v1
        if: ${{failure()}}
-     - run: echo "Test file " > test.txt
+     - run: touch test.txt
        
      # Notify by slack 2  
      - name: Upload to slack step
