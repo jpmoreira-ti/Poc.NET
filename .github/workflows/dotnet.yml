@@ -87,7 +87,7 @@ jobs:
                 "author_icon": "${{ github.event.sender.avatar_url }}",
                 "fields": [
                   {
-                    "title": "Build ${{ github.run_id }}:",
+                    "title": "${{env.title}}:",
                     "value": "${{ github.event.repository.url }}/actions/runs/${{ github.run_id }}"
                   },
                   {
@@ -100,7 +100,7 @@ jobs:
                   },
                   {
                     "title": "Relatório de testes:",
-                    "value": "${{github.workspace}}/${{env.file_name}}"
+                    "value": "${{github.workspace}}/${{env.file_name}};Title=${{env.title}}"
                   }
                 ]
               }
