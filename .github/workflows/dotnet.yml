@@ -69,7 +69,7 @@ jobs:
     #   if: ${{failure()}}
 
        
-     # Notify by slack 2  
+     # Notify by slack  
      - name: Upload to slack step
        uses: adrey/slack-file-upload-action@master
        if: ${{failure()}}
