@@ -46,24 +46,17 @@ jobs:
           fields: workflow,job,commit,repo,ref,author,took
           custom_payload: |
            {
-             text: "Custom Field Check",
+             text: "Resultado:",
              attachments: [{
-               "author_name": "8398a7@action-slack", // json
                fallback: 'fallback',
-               color: '${{job.status}}',
+               color: '${{job.status}}'.toUpperCase(),
                title: 'CI Result',
                text: 'Succeeded',
                fields: [{
-                 title: 'lower case',
-                 value: 'LOWER CASE CHECK'.toLowerCase(),
+                 title: 'Status',
+                 value: '${{job.status}}'.toUpperCase(),
                  short: true
                },
-               {
-                 title: 'reverse',
-                 value: 'gnirts esrever'.split('').reverse().join(''),
-                 short: true
-               },
-               {
                  title: '${{env.title}}',
                  value: '${{github.workspace}}/${{env.file_name}}',
                  short: false
