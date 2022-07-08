@@ -78,7 +78,7 @@ jobs:
 #           path: ${{github.workspace}}/${{env.file_name}}
 #           channel: pocdotnet
           
-    # Notify by slack      
+    # Notify by slack test     
      - name: Send GitHub Action trigger data to Slack workflow
        id: slack
        uses: slackapi/slack-github-action@v1.19.0
